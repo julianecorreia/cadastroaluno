@@ -18,9 +18,9 @@ public class EnderecoDAO {
                 .getResultList();
     }
 
-    public Endereco findByCep(String cep) {
+    public List<Endereco> findByCep(String cep) {
         return em.createQuery("SELECT e FROM Endereco e WHERE e.cep = :cep", Endereco.class)
-                .setParameter("cep", cep).getSingleResult();
+                .setParameter("cep", cep).getResultList();
     }
 
     public Endereco findById(Long id) {

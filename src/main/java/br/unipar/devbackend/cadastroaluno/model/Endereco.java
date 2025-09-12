@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.StringReader;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -29,6 +30,8 @@ public class Endereco {
     private String localidade;
     private String uf;
 
+    private LocalDateTime dataCadastro;
+
     @ManyToOne
     @JoinColumn(name = "aluno_id")
     private Aluno aluno;
@@ -39,6 +42,21 @@ public class Endereco {
         Unmarshaller unmarshaller = context.createUnmarshaller();
         StringReader reader = new StringReader(stringXml); //lê a string como se fosse um arquivo
         return (Endereco) unmarshaller.unmarshal(reader); //converte o XML em objeto Java
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco{" +
+                "id=" + id +
+                ", cep='" + cep + '\'' +
+                ", logradouro='" + logradouro + '\'' +
+                ", complemento='" + complemento + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", localidade='" + localidade + '\'' +
+                ", uf='" + uf + '\'' +
+                ", dataCadastro=" + dataCadastro +
+                ", aluno=" + (aluno != null ? aluno.getId() : null) +
+                '}';
     }
 
 }
